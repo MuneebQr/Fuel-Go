@@ -1,0 +1,702 @@
+{
+  "Version": 1,
+  "Hash": "uqsiJWqmCtwzdSUBujQlXm2HzLQVj6AOj/zIHNF43/g=",
+  "Source": "Refuelling.Presentation",
+  "BasePath": "_content/Refuelling.Presentation",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Refuelling.Presentation\\wwwroot",
+      "Source": "Refuelling.Presentation",
+      "ContentRoot": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\",
+      "BasePath": "_content/Refuelling.Presentation",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\d3ebu9rp0j-if5bv9u9rd.gz",
+      "SourceId": "Refuelling.Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Refuelling.Presentation",
+      "RelativePath": "index#[.{fingerprint=if5bv9u9rd}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\index.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "0af6gq16pi",
+      "Integrity": "KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\q5ha2nsjgg-dj0r36ww2y.gz",
+      "SourceId": "Refuelling.Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Refuelling.Presentation",
+      "RelativePath": "style#[.{fingerprint=dj0r36ww2y}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\style.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "umqr8essso",
+      "Integrity": "aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\index.html",
+      "SourceId": "Refuelling.Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\",
+      "BasePath": "_content/Refuelling.Presentation",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "if5bv9u9rd",
+      "Integrity": "wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\style.css",
+      "SourceId": "Refuelling.Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\",
+      "BasePath": "_content/Refuelling.Presentation",
+      "RelativePath": "style#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dj0r36ww2y",
+      "Integrity": "hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\d3ebu9rp0j-if5bv9u9rd.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000120510966"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8297"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 20:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37491"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 20:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\d3ebu9rp0j-if5bv9u9rd.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8297"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 20:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU="
+        }
+      ]
+    },
+    {
+      "Route": "index.if5bv9u9rd.html",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\d3ebu9rp0j-if5bv9u9rd.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000120510966"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8297"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 20:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "if5bv9u9rd"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk="
+        }
+      ]
+    },
+    {
+      "Route": "index.if5bv9u9rd.html",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37491"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 20:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "if5bv9u9rd"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wqyqTdoidofmKy2RSlZfchHCOvqiCzNG3swc11b7cEk="
+        }
+      ]
+    },
+    {
+      "Route": "index.if5bv9u9rd.html.gz",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\d3ebu9rp0j-if5bv9u9rd.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8297"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 20:17:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "if5bv9u9rd"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KCWnE04ixH723j99MaZ2h0S8h8D7y72zJd436vhx6qU="
+        }
+      ]
+    },
+    {
+      "Route": "style.css",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\q5ha2nsjgg-dj0r36ww2y.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000802568218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1245"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 17:59:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU="
+        }
+      ]
+    },
+    {
+      "Route": "style.css",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 17:59:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU="
+        }
+      ]
+    },
+    {
+      "Route": "style.css.gz",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\q5ha2nsjgg-dj0r36ww2y.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1245"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 17:59:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c="
+        }
+      ]
+    },
+    {
+      "Route": "style.dj0r36ww2y.css",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\q5ha2nsjgg-dj0r36ww2y.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000802568218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1245"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 17:59:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dj0r36ww2y"
+        },
+        {
+          "Name": "label",
+          "Value": "style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU="
+        }
+      ]
+    },
+    {
+      "Route": "style.dj0r36ww2y.css",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\wwwroot\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 17:59:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dj0r36ww2y"
+        },
+        {
+          "Name": "label",
+          "Value": "style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hwlMOqTo6PHdiQmg9MS2GP9c1zOtym7tNggf7ijwmMU="
+        }
+      ]
+    },
+    {
+      "Route": "style.dj0r36ww2y.css.gz",
+      "AssetFile": "C:\\Users\\PC\\RemoteRefuellingSystem\\Refuelling.Presentation\\obj\\Debug\\net9.0\\compressed\\q5ha2nsjgg-dj0r36ww2y.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1245"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Oct 2026 17:59:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dj0r36ww2y"
+        },
+        {
+          "Name": "label",
+          "Value": "style.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-aoCJ+jZH/Dm8YSchbFbkuG3rY1n5Dy8+sang3F4Fp2c="
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelGo™ - Enterprise Remote Refuelling System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #e11d48;
+            --accent-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; }
+
+        .navbar { background-color: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .logo span { color: #f43f5e; font-weight: 400; font-size: 1.1rem; }
+        
+        .nav-btn { background: var(--accent-gradient); color: white; border: none; padding: 8px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; text-decoration: none; }
+        .nav-btn:hover { opacity: 0.9; }
+
+        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 30px 20px; }
+        .card { background: var(--card-bg); width: 100%; max-width: 500px; padding: 35px; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .card h2 { font-size: 1.6rem; color: var(--primary); margin-bottom: 8px; font-weight: 700; }
+        .subtitle { font-size: 0.9rem; color: #64748b; margin-bottom: 25px; }
+
+        form { display: flex; flex-direction: column; gap: 16px; }
+        input, select, textarea { width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; outline: none; background: #fbfbfc; }
+        input:focus, select:focus, textarea:focus { border-color: #f43f5e; box-shadow: 0 0 0 3px rgba(244,63,94,0.15); background: #ffffff; }
+
+        .password-container { position: relative; width: 100%; }
+        .password-container input { padding-right: 45px; }
+        .eye-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.2rem; user-select: none; }
+
+        .submit-btn { background: var(--accent-gradient); color: white; border: none; padding: 12px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 5px; }
+        .submit-btn:hover { opacity: 0.95; }
+
+        .footer { background-color: #ffffff; border-top: 1px solid var(--border-color); text-align: center; padding: 20px; font-size: 0.85rem; color: #64748b; }
+        .hidden { display: none !important; }
+        .response-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 6px; margin-top: 20px; }
+
+        .dashboard-container { max-width: 1100px !important; width: 100% !important; padding: 35px; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-bottom: 20px; }
+
+        /* Stats Cards Bar */
+        .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; text-align: center; }
+        .stat-card h4 { font-size: 0.85rem; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
+        .stat-card .value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+
+        /* Employee Grid Cards */
+        .emp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 15px; }
+        .emp-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; cursor: pointer; transition: all 0.2s; position: relative; }
+        .emp-card:hover { border-color: #f43f5e; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
+        .badge-working { background: #dcfce7; color: #15803d; }
+        .badge-free { background: #e0f2fe; color: #0369a1; }
+        .badge-leave { background: #fee2e2; color: #b91c1c; }
+
+        /* Detail Modal Popup */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-body { background: white; width: 90%; max-width: 650px; border-radius: 12px; padding: 25px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 15px; }
+
+        @media (max-width: 768px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <header class="navbar">
+        <div class="logo" onclick="showSection('request-section')">
+            ⛽ FuelGo™ <span>Remote Refuelling System</span>
+        </div>
+        <nav>
+            <button class="nav-btn" onclick="showSection('login-section')">Staff Login</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <!-- 1. Client Portal: Request Refuelling -->
+        <section id="request-section" class="card">
+            <h2>Request Remote Refuelling</h2>
+            <p class="subtitle">Enter your vehicle and location details for instant dispatch.</p>
+            
+            <form id="refuelForm">
+                <input type="text" id="customerName" placeholder="Full Name" required>
+                <input type="text" id="cnicNumber" placeholder="CNIC Number (e.g., 35202-xxxxxxx-x)" required>
+                <input type="text" id="carNumber" placeholder="Vehicle / Car Number (e.g., LE-20-1234)" required>
+                <input type="text" id="location" placeholder="Exact Delivery Location" required>
+                <select id="fuelType" required>
+                    <option value="">Select Fuel Type</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Hi-Octane">Hi-Octane</option>
+                </select>
+                <select id="orderMode">
+                    <option value="amount">Enter amount (Rs.)</option>
+                    <option value="liters">Enter quantity (Liters)</option>
+                </select>
+                <input type="number" id="amountInput" placeholder="Fuel amount (Rs.)" min="0.01" step="0.01" required>
+                <input type="number" id="quantityLiters" placeholder="Quantity required (Liters)" min="0.01" step="0.01" class="hidden">
+                <div id="priceSummary" class="response-box">
+                    <p>Select a fuel type and enter an amount or quantity to see your bill.</p>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Order</button>
+            </form>
+            <div id="responseMsg"></div>
+        </section>
+
+        <!-- 2. Order Confirmation Section -->
+        <section id="confirmation-section" class="card hidden" style="max-width: 650px;">
+            <h2 style="text-align: center; color: #16a34a;">✅ Order Dispatched!</h2>
+            <p class="subtitle" style="text-align: center;">Our supplier is on the way to your location.</p>
+            
+            <div style="background: #f8fafc; border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p style="margin-bottom: 6px;">👤 <strong>Supplier Assigned:</strong> <span id="confEmpName">—</span></p>
+                <p style="margin-bottom: 6px;">📞 <strong>Supplier Phone:</strong> <span id="confEmpPhone">—</span></p>
+                <p style="margin-bottom: 6px;">⛽ <strong>Tank Source:</strong> <span id="confTank">—</span></p>
+                <p style="margin-bottom: 6px;">📍 <strong>Location:</strong> <span id="confLocation">—</span></p>
+                <p style="margin-top: 10px; font-weight: 700; color: #166534; font-size: 1.1rem;">Total Bill: <span id="confTotalBill">—</span></p>
+            </div>
+
+            <!-- Review Form -->
+            <div style="border-top: 2px dashed var(--border-color); padding-top: 15px;">
+                <h3>⭐ Leave Feedback for Employee</h3>
+                <form id="reviewForm" style="margin-top: 10px;">
+                    <input type="hidden" id="reviewRequestId">
+                    <select id="reviewRating" required>
+                        <option value="">Select Rating</option>
+                        <option value="5">⭐⭐⭐⭐⭐ (5 - Excellent)</option>
+                        <option value="4">⭐⭐⭐⭐ (4 - Good)</option>
+                        <option value="3">⭐⭐⭐ (3 - Average)</option>
+                        <option value="2">⭐⭐ (2 - Poor)</option>
+                        <option value="1">⭐ (1 - Terrible)</option>
+                    </select>
+                    <textarea id="reviewComment" placeholder="Write feedback/comments..." rows="2" required></textarea>
+                    <button type="submit" class="submit-btn" style="padding: 10px;">Submit Review</button>
+                </form>
+                <p id="reviewMsg" style="margin-top: 8px; font-weight: bold;"></p>
+            </div>
+
+            <button type="button" class="submit-btn" style="margin-top: 15px; background: #64748b;" onclick="startNewOrder()">Place Another Order</button>
+        </section>
+
+        <!-- 3. Staff Login Section -->
+        <section id="login-section" class="card hidden" style="max-width: 420px;">
+            <h2>Staff Portal Login</h2>
+            <p class="subtitle">Admin & Employees: Sign in with ID & Password.</p>
+            <form id="loginForm">
+                <input type="text" id="loginId" placeholder="Employee ID (e.g. AD-001 or EM-001)" required>
+                <div class="password-container">
+                    <input type="password" id="loginPassword" placeholder="Enter Password" required>
+                    <span class="eye-icon" id="togglePassword">👁️</span>
+                </div>
+                <button type="submit" class="submit-btn">Secure Login</button>
+            </form>
+            <p id="loginError" style="color: #ef4444; font-size: 0.85rem; margin-top: 10px;"></p>
+            <p style="text-align: center; margin-top: 15px;"><a href="#" onclick="showSection('request-section')" style="color: #64748b; text-decoration: none;">← Back to Home</a></p>
+        </section>
+
+        <!-- 4. ADMIN DASHBOARD (Enterprise Control Center) -->
+        <section id="admin-dashboard" class="card dashboard-container hidden">
+            <div class="dash-header">
+                <div>
+                    <h2>👑 Administrator Master Panel</h2>
+                    <p id="adminWelcome" style="color: #0284c7; font-weight: 600; margin-top: 4px;"></p>
+                </div>
+                <button onclick="logout()" style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">Logout</button>
+            </div>
+
+            <!-- Live Status Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <h4>Total Workforce</h4>
+                    <div class="value" id="statTotalEmp">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>In Duty / Working</h4>
+                    <div class="value" style="color: #15803d;" id="statWorking">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Free / Available</h4>
+                    <div class="value" style="color: #0284c7;" id="statFree">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>On Leave</h4>
+                    <div class="value" style="color: #b91c1c;" id="statLeave">0</div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="font-size: 1.2rem; color: var(--primary);">👥 Employee Workforce Directory</h3>
+                <span style="font-size: 0.85rem; color: #64748b;">💡 Click any employee card to view full analytics & earnings</span>
+            </div>
+
+            <!-- Employee Cards Container -->
+            <div id="adminEmpCardsGrid" class="emp-grid">
+                Loading employees data...
+            </div>
+        </section>
+
+        <!-- 5. EMPLOYEE PORTAL (Supplier Personal Portal) -->
+        <section id="employee-dashboard" class="card dashboard-container hidden">
+            <div class="dash-header">
+                <div>
+                    <h2>👷 Employee Service Portal</h2>
+                    <p id="employeeWelcome" style="color: #16a34a; font-weight: 600; margin-top: 4px;"></p>
+                </div>
+                <button onclick="logout()" style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">Logout</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <!-- Tank Stock Card -->
+                <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 10px;">⛽ My Assigned Tank Status</h3>
+                    <div id="empTankInfo">Loading tank level...</div>
+                </div>
+
+                <!-- Earnings Summary Card -->
+                <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 10px;">💰 Daily Summary & Earnings</h3>
+                    <div id="empEarningsInfo">Loading earnings...</div>
+                </div>
+            </div>
+
+            <!-- Tasks & Reviews -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 10px;">📋 Assigned Tasks List</h3>
+                    <div id="empTasksList">Loading tasks...</div>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 10px;">🔔 Customer Feedback & Notifications</h3>
+                    <div id="empReviewsList">Loading feedback...</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- EMPLOYEE DETAILED ANALYTICS MODAL (Popup for Admin) -->
+    <div id="employeeDetailModal" class="modal-overlay hidden">
+        <div class="modal-body">
+            <div class="modal-header">
+                <h3 id="mEmpName" style="color: var(--primary);">Employee Details</h3>
+                <button onclick="closeModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">✕</button>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #f1f5f9; padding: 12px; border-radius: 6px;">
+                    <p style="font-size: 0.85rem; color: #64748b;">Employee Code</p>
+                    <p id="mEmpCode" style="font-weight: 700; color: var(--primary);">—</p>
+                </div>
+                <div style="background: #f1f5f9; padding: 12px; border-radius: 6px;">
+                    <p style="font-size: 0.85rem; color: #64748b;">Current Duty Status</p>
+                    <p id="mEmpStatus">—</p>
+                </div>
+                <div style="background: #f1f5f9; padding: 12px; border-radius: 6px;">
+                    <p style="font-size: 0.85rem; color: #64748b;">Assigned Tank Number</p>
+                    <p id="mTankNo" style="font-weight: 700;">—</p>
+                </div>
+                <div style="background: #f1f5f9; padding: 12px; border-radius: 6px;">
+                    <p style="font-size: 0.85rem; color: #64748b;">Tank Live Fuel Level</p>
+                    <p id="mTankStock" style="font-weight: 700; color: #0284c7;">—</p>
+                </div>
+            </div>
+
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="color: #166534; margin-bottom: 8px;">💰 Financial & Performance Overview</h4>
+                <p><strong>Total Revenue Earned:</strong> <span id="mTotalEarned" style="color: #16a34a; font-weight: 700; font-size: 1.1rem;">Rs. 0</span></p>
+                <p><strong>Total Tasks Completed:</strong> <span id="mTasksDone">0</span></p>
+                <p><strong>Average Star Rating:</strong> <span id="mAvgRating">0 ⭐</span></p>
+            </div>
+
+            <div>
+                <h4 style="margin-bottom: 10px; color: var(--primary);">💬 Customer Reviews & Comments</h4>
+                <div id="mReviewsList" style="max-height: 180px; overflow-y: auto;">
+                    No reviews yet.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 FuelGo™ Remote Refuelling Systems. All rights reserved. Secure Full-Stack .NET Solution.</p>
+    </footer>
+
+    <script>
+        // Password Visibility Toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('loginPassword');
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
+
+        function showSection(sectionId) {
+            ['request-section', 'confirmation-section', 'login-section', 'admin-dashboard', 'employee-dashboard']
+                .forEach(id => document.getElementById(id).classList.add('hidden'));
+
+            if (sectionId === 'dashboard-router') {
+                const role = localStorage.getItem('userRole');
+                if (role === 'Admin') {
+                    document.getElementById('admin-dashboard').classList.remove('hidden');
+                    loadAdminDashboard();
+                } else if (role === 'Supplier') {
+                    document.getElementById('employee-dashboard').classList.remove('hidden');
+                    loadEmployeeDashboard();
+                } else {
+                    document.getElementById('login-section').classList.remove('hidden');
+                }
+                return;
+            }
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('currentUser')) {
+                showSection('dashboard-router');
+            }
+        });
+
+        function startNewOrder() {
+            document.getElementById('refuelForm').reset();
+            document.getElementById('reviewForm').reset();
+            document.getElementById('reviewMsg').textContent = '';
+            document.getElementById('responseMsg').textContent = '';
+            updatePriceSummary();
+            showSection('request-section');
+        }
+
+        // Pricing Calculator Logic
+        const fuelPrices = { Petrol: 398.30, Diesel: 396.24, 'Hi-Octane': 410.00 };
+        const deliveryCharge = 500;
+        const orderMode = document.getElementById('orderMode');
+        const amountInput = document.getElementById('amountInput');
+        const quantityInput = document.getElementById('quantityLiters');
+        const priceSummary = document.getElementById('priceSummary');
+        const dispatchButton = document.querySelector('#refuelForm .submit-btn');
+
+        function updatePriceSummary() {
+            const fuelType = document.getElementById('fuelType').value;
+            const pricePerLiter = fuelPrices[fuelType];
+            const enteredValue = Number(orderMode.value === 'amount' ? amountInput.value : quantityInput.value);
+
+            amountInput.classList.toggle('hidden', orderMode.value !== 'amount');
+            amountInput.required = orderMode.value === 'amount';
+            quantityInput.classList.toggle('hidden', orderMode.value !== 'liters');
+            quantityInput.required = orderMode.value === 'liters';
+
+            if (!pricePerLiter || !Number.isFinite(enteredValue) || enteredValue <= 0) {
+                priceSummary.textContent = 'Select a fuel type and enter an amount or quantity to see your bill.';
+                return null;
+            }
+
+            const quantityLiters = orderMode.value === 'amount' ? enteredValue / pricePerLiter : enteredValue;
+            const fuelCost = orderMode.value === 'amount' ? enteredValue : quantityLiters * pricePerLiter;
+            const total = fuelCost + deliveryCharge;
+
+            priceSummary.innerHTML = `
+                <p style="font-weight: 600; margin-bottom: 6px;">${quantityLiters.toFixed(3)} liters of ${fuelType} will cost Rs. ${fuelCost.toFixed(2)}.</p>
+                <p>Fuel rate: Rs. ${pricePerLiter.toFixed(2)} / liter</p>
+                <p>Delivery charges: Rs. ${deliveryCharge.toFixed(2)}</p>
+                <p style="font-weight: 700; margin-top: 6px;">Total bill: Rs. ${total.toFixed(2)}</p>`;
+
+            return { quantityLiters, fuelCost, total };
+        }
+
+        orderMode.addEventListener('change', updatePriceSummary);
+        amountInput.addEventListener('input', updatePriceSummary);
+        quantityInput.addEventListener('input', updatePriceSummary);
+        document.getElementById('fuelType').addEventListener('change', updatePriceSummary);
+
+        // Submit Refuel Request
+        document.getElementById('refuelForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const calculation = updatePriceSummary();
+            if (!calculation) return;
+
+            const data = {
+                customerName: document.getElementById('customerName').value,
+                cnicNumber: document.getElementById('cnicNumber').value,
+                carNumber: document.getElementById('carNumber').value,
+                location: document.getElementById('location').value,
+                fuelType: document.getElementById('fuelType').value,
+                quantityLiters: calculation.quantityLiters
+            };
+
+            dispatchButton.disabled = true;
+            dispatchButton.textContent = 'Dispatching...';
+            try {
+                const res = await fetch('/api/refuel/request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (!res.ok) throw new Error(result.message || 'Order failed.');
+
+                const responseData = result.data;
+                const req = responseData && responseData.request;
+                const emp = responseData && responseData.assignedEmployee;
+
+                document.getElementById('confEmpName').textContent = emp ? emp.name : 'Supplier Assigned';
+                document.getElementById('confEmpPhone').textContent = emp ? emp.phoneNumber : 'N/A';
+                document.getElementById('confTank').textContent = responseData ? responseData.assignedTank : 'Tank-General';
+                document.getElementById('confLocation').textContent = data.location;
+                document.getElementById('confTotalBill').textContent = `Rs. ${calculation.total.toFixed(2)}`;
+                document.getElementById('reviewRequestId').value = req ? req.id : '';
+
+                showSection('confirmation-section');
+            } catch (error) {
+                document.getElementById('responseMsg').innerHTML = `<p style="color: #b91c1c; margin-top: 10px;">Error: ${error.message}</p>`;
+            } finally {
+                dispatchButton.disabled = false;
+                dispatchButton.textContent = 'Confirm Order';
+            }
+        });
+
+        // Submit Customer Review
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                requestId: parseInt(document.getElementById('reviewRequestId').value),
+                rating: parseInt(document.getElementById('reviewRating').value),
+                comment: document.getElementById('reviewComment').value
+            };
+
+            const res = await fetch('/api/refuel/review', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const msgEl = document.getElementById('reviewMsg');
+            if (res.ok) {
+                msgEl.style.color = '#16a34a';
+                msgEl.innerText = '✅ Thank you! Review submitted successfully.';
+                document.getElementById('reviewForm').reset();
+            } else {
+                msgEl.style.color = '#ef4444';
+                msgEl.innerText = '❌ Failed to submit review.';
+            }
+        });
+
+        // Staff Login Logic
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const enteredId = document.getElementById('loginId').value.trim();
+            const enteredPass = document.getElementById('loginPassword').value.trim();
+
+            try {
+                const empRes = await fetch('/api/refuel/employees');
+                const employees = await empRes.json();
+
+                const foundEmp = employees.find(emp => emp.employeeCode.toLowerCase() === enteredId.toLowerCase() && emp.password === enteredPass);
+
+                if (foundEmp) {
+                    localStorage.setItem('currentUser', foundEmp.name);
+                    localStorage.setItem('currentUserCode', foundEmp.employeeCode);
+                    localStorage.setItem('currentId', foundEmp.id);
+                    localStorage.setItem('userRole', foundEmp.role);
+
+                    document.getElementById('loginError').innerText = '';
+                    document.getElementById('loginForm').reset();
+                    showSection('dashboard-router');
+                } else {
+                    document.getElementById('loginError').innerText = 'Access denied: Invalid ID or password.';
+                }
+            } catch (err) {
+                document.getElementById('loginError').innerText = 'Server connection error.';
+            }
+        });
+
+        function logout() {
+            localStorage.clear();
+            showSection('request-section');
+        }
+
+        let globalAdminEmpData = [];
+
+        // Load Master Admin Dashboard
+        async function loadAdminDashboard() {
+            const name = localStorage.getItem('currentUser');
+            const code = localStorage.getItem('currentUserCode');
+            document.getElementById('adminWelcome').innerText = `Welcome back, ${name} (${code}) — Master Administrator`;
+
+            const res = await fetch('/api/refuel/admin/employees-analytics');
+            globalAdminEmpData = await res.json();
+
+            // Calculate Live Stats
+            let working = 0, free = 0, leave = 0;
+            globalAdminEmpData.forEach(e => {
+                if (e.dutyStatus === 'In Task / Working') working++;
+                else if (e.dutyStatus === 'On Leave') leave++;
+                else free++;
+            });
+
+            document.getElementById('statTotalEmp').innerText = globalAdminEmpData.length;
+            document.getElementById('statWorking').innerText = working;
+            document.getElementById('statFree').innerText = free;
+            document.getElementById('statLeave').innerText = leave;
+
+            // Render Employee Cards Grid
+            let gridHtml = '';
+            globalAdminEmpData.forEach((e, idx) => {
+                let badgeClass = e.dutyStatus === 'In Task / Working' ? 'badge-working' : (e.dutyStatus === 'On Leave' ? 'badge-leave' : 'badge-free');
+                
+                gridHtml += `
+                    <div class="emp-card" onclick="openEmpModal(${idx})">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <div>
+                                <strong style="font-size: 1.05rem; color: var(--primary);">${e.name}</strong>
+                                <p style="font-size: 0.85rem; color: #64748b;">ID: ${e.employeeCode} (${e.role})</p>
+                            </div>
+                            <span class="badge ${badgeClass}">${e.dutyStatus}</span>
+                        </div>
+                        <p style="font-size: 0.88rem; margin: 4px 0;">⛽ <strong>Managed Fuel:</strong> ${e.fuelTypeManaged}</p>
+                        <p style="font-size: 0.88rem; margin: 4px 0;">🚛 <strong>Tank ID:</strong> ${e.assignedTankNumber}</p>
+                        <p style="font-size: 0.88rem; margin: 4px 0; color: #16a34a; font-weight: 600;">💰 Total Sales: Rs. ${e.totalEarningsRs.toLocaleString()}</p>
+                        <p style="font-size: 0.85rem; margin-top: 6px; color: #f59e0b;">⭐ ${e.averageRating} / 5 (${e.totalReviewsCount} reviews)</p>
+                    </div>
+                `;
+            });
+            document.getElementById('adminEmpCardsGrid').innerHTML = gridHtml;
+        }
+
+        // Open Detailed Employee Modal Popup
+        function openEmpModal(idx) {
+            const emp = globalAdminEmpData[idx];
+            if (!emp) return;
+
+            document.getElementById('mEmpName').innerText = `${emp.name} — Full Performance Report`;
+            document.getElementById('mEmpCode').innerText = emp.employeeCode;
+            
+            let badgeClass = emp.dutyStatus === 'In Task / Working' ? 'badge-working' : (emp.dutyStatus === 'On Leave' ? 'badge-leave' : 'badge-free');
+            document.getElementById('mEmpStatus').innerHTML = `<span class="badge ${badgeClass}">${emp.dutyStatus}</span>`;
+            
+            document.getElementById('mTankNo').innerText = emp.assignedTankNumber;
+            document.getElementById('mTankStock').innerText = `${emp.tankStockLiters} Liters Available`;
+            document.getElementById('mTotalEarned').innerText = `Rs. ${emp.totalEarningsRs.toLocaleString()}`;
+            document.getElementById('mTasksDone').innerText = `${emp.totalTasksCompleted} Completed / ${emp.totalTasksAssigned} Total`;
+            document.getElementById('mAvgRating').innerText = `${emp.averageRating} ⭐ (${emp.totalReviewsCount} Reviews)`;
+
+            // Reviews List
+            let revHtml = '';
+            if (!emp.reviews || emp.reviews.length === 0) {
+                revHtml = `<p style="color: #64748b; font-size: 0.88rem;">No customer reviews submitted for this employee yet.</p>`;
+            } else {
+                emp.reviews.forEach(r => {
+                    revHtml += `
+                        <div style="background: #f8fafc; border: 1px solid var(--border-color); padding: 10px; border-radius: 6px; margin-bottom: 8px;">
+                            <p style="font-size: 0.88rem;">⭐ <strong>${r.rating}/5 Stars</strong> by ${r.customerName}</p>
+                            <p style="font-size: 0.85rem; color: #334155; margin-top: 2px;">💬 "${r.comment}"</p>
+                        </div>
+                    `;
+                });
+            }
+            document.getElementById('mReviewsList').innerHTML = revHtml;
+
+            document.getElementById('employeeDetailModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('employeeDetailModal').classList.add('hidden');
+        }
+
+        // Load Supplier Personal Portal
+        async function loadEmployeeDashboard() {
+            const name = localStorage.getItem('currentUser');
+            const code = localStorage.getItem('currentUserCode');
+            const empId = localStorage.getItem('currentId');
+
+            document.getElementById('employeeWelcome').innerText = `Welcome, ${name} (${code}) — Supplier Portal`;
+
+            // Tank Info
+            const tankRes = await fetch('/api/refuel/tanks');
+            const tanks = await tankRes.json();
+            let tankHtml = '';
+            tanks.forEach(t => {
+                tankHtml += `<p style="margin-bottom: 6px;"><strong>${t.tankNumber} (${t.fuelType})</strong>: <span style="color: #0284c7; font-weight: 700;">${t.currentStockLiters}L Stock Left</span></p>`;
+            });
+            document.getElementById('empTankInfo').innerHTML = tankHtml;
+
+            // Requests & Tasks
+            const reqRes = await fetch(`/api/refuel/employee-requests/${empId}`);
+            const requests = await reqRes.json();
+
+            let completedCount = requests.filter(r => r.status === 'Completed').length;
+            let totalEarnings = requests.reduce((sum, r) => sum + (r.quantityLiters * 398 + 500), 0);
+
+            document.getElementById('empEarningsInfo').innerHTML = `
+                <p style="font-size: 1.1rem; color: #16a34a; font-weight: 700; margin-bottom: 6px;">Total Revenue: Rs. ${Math.round(totalEarnings).toLocaleString()}</p>
+                <p style="font-size: 0.9rem; color: #64748b;">Tasks Completed: ${completedCount} / ${requests.length}</p>
+            `;
+
+            if (requests.length === 0) {
+                document.getElementById('empTasksList').innerHTML = `<p style="color: #64748b; font-size: 0.88rem;">No refuelling tasks assigned to you yet.</p>`;
+            } else {
+                let taskHtml = '<ul style="padding-left: 18px; font-size: 0.88rem; line-height: 1.6;">';
+                requests.forEach(r => {
+                    taskHtml += `<li style="margin-bottom: 8px; border-bottom: 1px solid #cbd5e1; padding-bottom: 6px;">
+                        <strong>Customer:</strong> ${r.customerName} (${r.carNumber})<br>
+                        <strong>Location:</strong> ${r.location}<br>
+                        <strong>Fuel:</strong> ${r.fuelType} - ${r.quantityLiters.toFixed(2)} Liters<br>
+                        <strong>Status:</strong> <span style="color: ${r.status === 'Completed' ? '#16a34a' : '#d97706'}; font-weight: bold;">${r.status}</span>
+                    </li>`;
+                });
+                taskHtml += '</ul>';
+                document.getElementById('empTasksList').innerHTML = taskHtml;
+            }
+
+            // Reviews
+            const revRes = await fetch(`/api/refuel/employee-reviews/${empId}`);
+            const reviews = await revRes.json();
+
+            if (reviews.length === 0) {
+                document.getElementById('empReviewsList').innerHTML = `<p style="color: #64748b; font-size: 0.88rem;">No customer feedback received yet.</p>`;
+            } else {
+                let revHtml = '<div style="max-height: 200px; overflow-y: auto;">';
+                reviews.forEach(rv => {
+                    revHtml += `<div style="background: #ffffff; border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; margin-bottom: 6px;">
+                        ⭐ <strong>${rv.rating}/5 Stars</strong> by ${rv.customerName}<br>
+                        <small style="color: #475569;">"${rv.comment}"</small>
+                    </div>`;
+                });
+                revHtml += '</div>';
+                document.getElementById('empReviewsList').innerHTML = revHtml;
+            }
+        }
+    </script>
+</body>
+</html>
